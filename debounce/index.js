@@ -1,0 +1,22 @@
+const input = document.querySelector(".input");
+
+function inputHandler(event) {
+    console.log(event.target.value);
+    // logic to call api
+    // api.getDatFromServer();
+
+}
+function debounce(callback,delay){
+    let timerId;
+    return function (...args) {
+        clearTimeout(timerId);
+        timerId = setTimeout(() => {
+            callback(...args)
+        },delay);
+    }
+
+}
+
+const debouncedInputHandler =  debounce(inputHandler, 500);
+
+input.addEventListener("keyup", debouncedInputHandler);
